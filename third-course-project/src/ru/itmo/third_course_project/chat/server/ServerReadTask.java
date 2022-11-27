@@ -35,7 +35,6 @@ public class ServerReadTask implements Runnable{
             try {
                 if (connection.getSocket().getInputStream().available() > 0) {
                     Message fromClient = connection.readMessage();
-                    System.out.println("FROM:" + fromClient);
                     messages.add(fromClient);
                 }
             } catch (ClassNotFoundException e) {

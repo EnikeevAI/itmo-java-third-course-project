@@ -1,9 +1,6 @@
 package ru.itmo.third_course_project.chat.common;
 
 import java.io.Serializable;
-import java.net.InetAddress;
-import java.util.Objects;
-import java.util.UUID;
 
 public class User implements Serializable {
     private String nickname;
@@ -28,23 +25,5 @@ public class User implements Serializable {
 
     public void setUserLocalAddress(String localAddress) {
         this.LocalAddress = localAddress;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        User user = (User) o;
-
-        if (!nickname.equals(user.nickname)) return false;
-        return LocalAddress.equals(user.LocalAddress);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = nickname.hashCode();
-        result = 31 * result + LocalAddress.hashCode();
-        return result;
     }
 }

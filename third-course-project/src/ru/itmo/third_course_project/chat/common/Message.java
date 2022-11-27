@@ -3,6 +3,7 @@ package ru.itmo.third_course_project.chat.common;
 import java.io.Serializable;
 import java.net.Socket;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Message implements Serializable {
     private User sender;
@@ -38,7 +39,7 @@ public class Message implements Serializable {
         dateTime = LocalDateTime.now();
     }
 
-    public LocalDateTime getDateTime() {return dateTime;}
+    public String getDateTime() {return dateTime.format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"));}
 
     @Override
     public String toString() {

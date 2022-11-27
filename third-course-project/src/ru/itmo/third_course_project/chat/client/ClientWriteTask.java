@@ -5,7 +5,6 @@ import ru.itmo.third_course_project.chat.common.Message;
 import ru.itmo.third_course_project.chat.common.User;
 
 import java.io.IOException;
-import java.net.Socket;
 import java.net.SocketException;
 import java.util.Scanner;
 
@@ -25,7 +24,6 @@ public class ClientWriteTask implements Runnable{
     private String getUserText() {
         String text;
         while (true) {
-            System.out.println("Введите текст сообщения");
             text = scanner.nextLine();
             if (text == null || text.length() < 1) System.out.println("Текст должен содержать хотя бы один символ");
             else return text;
@@ -34,8 +32,18 @@ public class ClientWriteTask implements Runnable{
 
     @Override
     public void run() {
+        System.out.println("Можете начинать общение.\n" +
+                "Напишите сообщение в консоль и отправьте в чат, нажав клавишу Enter. \n" +
+                "Для выхода введите команду exit и нажмите клавишу Enter"
+        );
         while (!Thread.currentThread().isInterrupted()){
             String text = getUserText();
+            if ("exit".equalsIgnoreCase(text)) {
+                System.out.println("Выполняется выход");
+                Thread.currentThread().interrupt();
+                System.out.println(Thread.activeCount());
+                continue;
+            }
             Message message = new Message(sender, text);
             try {
                 connection.sendMessage(message);

@@ -40,7 +40,7 @@ public class Client {
 
     private void run() {
         while (true) {
-            try (Connection<Message> connection = new Connection<>(new Socket("127.0.0.1", 8090))) {
+            try (Connection<Message> connection = new Connection<>(new Socket(serverIP, serverPort))) {
                 user.setUserLocalAddress(connection.getSocket().getLocalSocketAddress().toString());
                 Thread th1 = new Thread(new ClientReadTask(connection));
                 Thread th2 = new Thread(new ClientWriteTask(user, connection, scanner));

@@ -38,14 +38,14 @@ public class ServerWriteTask implements Runnable {
         while (!Thread.currentThread().isInterrupted()) {
             try {
                 Message sendMessage = messages.take();
-                System.out.println("Message: " + sendMessage.getText());
                 for (Connection connection : connections) {
                     String connectionAddress = connection.getSocket().getRemoteSocketAddress().toString();
                     String messageUserAddress = sendMessage.getSender().getUserLocalAddress();
                     try {
                         if(!connectionAddress.equals(messageUserAddress)) connection.sendMessage(sendMessage);
                     } catch (SocketException socketException) {
-                        System.out.println("Потеря связи с одним из клиентов");
+                        System.out.println(
+                                "Потеря связи с одним из клиентов. Адрес клиента в сети: " + connectionAddress);
                         connections.remove(connection);
                     }  catch (IOException e) {
                         e.printStackTrace();

@@ -29,7 +29,8 @@ public class Server {
             while (true) {
                 Socket socket = serverSocket.accept();
                 Connection<Message> connection = new Connection<>(socket);
-                System.out.println(connection.getSocket().getRemoteSocketAddress());
+                System.out.println("Подключение нового клиента. Адрес клиента в сети: " +
+                        connection.getSocket().getRemoteSocketAddress());
                 connections.add(connection);
                 new Thread(new ServerReadTask(connection, messages)).start();
             }

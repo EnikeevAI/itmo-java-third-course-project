@@ -10,8 +10,6 @@ public class Connection <T extends Message> implements AutoCloseable{
     private ObjectInputStream input;
     private ObjectOutputStream output;
 
-    private User user;
-
     public Connection(Socket socket) throws IOException {
         this.socket = socket;
         output = new ObjectOutputStream(this.socket.getOutputStream());
