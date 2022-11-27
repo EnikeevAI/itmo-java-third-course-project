@@ -1,6 +1,7 @@
 package ru.itmo.third_course_project.chat.common;
 
 import java.io.Serializable;
+import java.net.Socket;
 import java.time.LocalDateTime;
 
 public class Message implements Serializable {
@@ -9,15 +10,17 @@ public class Message implements Serializable {
     private LocalDateTime dateTime;
 
     public Message(User sender, String text) {
-        this.sender = sender;
-        this.text = text;
+        setSender(sender);
+        setText(text);
     }
 
     public User getSender() {
         return sender;
     }
 
-    public void setSender(User sender) {
+    private void setSender(User sender) {
+        if (sender == null) throw new IllegalArgumentException(
+                "В экземпляр класса Message передано значение sender = null");
         this.sender = sender;
     }
 
@@ -25,7 +28,9 @@ public class Message implements Serializable {
         return text;
     }
 
-    public void setText(String text) {
+    private void setText(String text) {
+        if (sender == null || text.length() <1) throw new IllegalArgumentException(
+                "Текст сообщения должен содержать хотя бы один символ");
         this.text = text;
     }
 
@@ -35,14 +40,12 @@ public class Message implements Serializable {
 
     public LocalDateTime getDateTime() {return dateTime;}
 
-
     @Override
     public String toString() {
-        return "SimpleMessage{" +
-                "sender='" + sender + '\'' +
+        return "Message{" +
+                "sender=" + sender +
                 ", text='" + text + '\'' +
                 ", dateTime=" + dateTime +
                 '}';
     }
-
 }

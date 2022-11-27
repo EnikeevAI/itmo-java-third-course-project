@@ -1,15 +1,16 @@
 package ru.itmo.third_course_project.chat.common;
 
 import java.io.Serializable;
+import java.net.InetAddress;
+import java.util.Objects;
 import java.util.UUID;
 
 public class User implements Serializable {
     private String nickname;
-    private String uid;
+    private String LocalAddress;
 
     public User(String nickname) {
         setNickname(nickname);
-        setUid();
     }
 
     public String getNickname() {
@@ -21,12 +22,12 @@ public class User implements Serializable {
         this.nickname = nickname;
     }
 
-    private String getUid() {
-        return uid;
+    public String getUserLocalAddress() {
+        return LocalAddress;
     }
 
-    private void setUid() {
-        this.uid = UUID.randomUUID().toString();;
+    public void setUserLocalAddress(String localAddress) {
+        this.LocalAddress = localAddress;
     }
 
     @Override
@@ -37,11 +38,13 @@ public class User implements Serializable {
         User user = (User) o;
 
         if (!nickname.equals(user.nickname)) return false;
-        return uid.equals(user.uid);
+        return LocalAddress.equals(user.LocalAddress);
     }
 
     @Override
     public int hashCode() {
-        return uid.hashCode();
+        int result = nickname.hashCode();
+        result = 31 * result + LocalAddress.hashCode();
+        return result;
     }
 }
