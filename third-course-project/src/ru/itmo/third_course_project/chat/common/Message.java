@@ -1,7 +1,6 @@
 package ru.itmo.third_course_project.chat.common;
 
 import java.io.Serializable;
-import java.net.Socket;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 

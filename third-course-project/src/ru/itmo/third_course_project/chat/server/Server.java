@@ -1,6 +1,7 @@
 package ru.itmo.third_course_project.chat.server;
 
 import ru.itmo.third_course_project.chat.common.Connection;
+import ru.itmo.third_course_project.chat.common.IOProperties;
 import ru.itmo.third_course_project.chat.common.Message;
 
 import java.io.IOException;
@@ -40,6 +41,6 @@ public class Server {
     }
 
     public static void main(String[] args) {
-        new Server(8090).run();
+        new Server(IOProperties.getPort()).run();
     }
 }

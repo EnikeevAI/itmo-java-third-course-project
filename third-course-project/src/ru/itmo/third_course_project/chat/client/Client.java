@@ -1,6 +1,7 @@
 package ru.itmo.third_course_project.chat.client;
 
 import ru.itmo.third_course_project.chat.common.Connection;
+import ru.itmo.third_course_project.chat.common.IOProperties;
 import ru.itmo.third_course_project.chat.common.Message;
 import ru.itmo.third_course_project.chat.common.User;
 
@@ -61,7 +62,7 @@ public class Client {
     }
 
     public static void main(String[] args) {
-        new Client("127.0.0.1", 8090).run();
+        new Client(IOProperties.getIP(), IOProperties.getPort()).run();
     }
 }
 

@@ -48,13 +48,13 @@ public class ServerWriteTask implements Runnable {
                                 "Потеря связи с одним из клиентов. Адрес клиента в сети: " + connectionAddress);
                         connections.remove(connection);
                     }  catch (IOException e) {
-                        e.printStackTrace();
+                        System.out.println("Обработка IOException в ServerWriteTask");
                     }
                 }
             } catch (InterruptedException e) {
-                System.out.println(e.getMessage());
-                // Thread.currentThread().interrupt();
+                System.out.println("Обработка InterruptedException в ServerWriteTask");
+                Thread.currentThread().interrupt();
             }
-        } //TODO
+        }
     }
 }

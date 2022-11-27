@@ -38,7 +38,7 @@ public class ServerReadTask implements Runnable{
                     messages.add(fromClient);
                 }
             } catch (ClassNotFoundException e) {
-                System.out.println("Обработка ClassNotFoundException");
+                System.out.println("Обработка ClassNotFoundException в ServerReadTask");
             } catch (IOException e) {
                 System.out.println("Обработка IOException в ServerReadTask");
             }
