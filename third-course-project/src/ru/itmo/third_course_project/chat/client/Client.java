@@ -46,7 +46,8 @@ public class Client {
                 Thread th2 = new Thread(new ClientWriteTask(user, connection, scanner));
                 th1.start();
                 th2.start();
-                th1.join();
+                th2.join();
+                return;
             } catch (SocketException socketException) {
                 System.out.println("Связь с сервером прервана");
                 break;

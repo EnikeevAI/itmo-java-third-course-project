@@ -41,7 +41,6 @@ public class ClientWriteTask implements Runnable{
             if ("exit".equalsIgnoreCase(text)) {
                 System.out.println("Выполняется выход");
                 Thread.currentThread().interrupt();
-                System.out.println(Thread.activeCount());
                 continue;
             }
             Message message = new Message(sender, text);
@@ -51,9 +50,9 @@ public class ClientWriteTask implements Runnable{
                 System.out.println("Не удалось отправить последнее сообщение, т.к. связь с сервером была утеряна");
                 Thread.currentThread().interrupt();
             } catch (IOException e) {
-                System.out.println(e.getClass());
-                e.printStackTrace();
+                System.out.println("Обработка IOException в ClassWriteTask");
             }
         }
+
     }
 }
